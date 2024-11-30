@@ -117,4 +117,10 @@
             <url>file://${project.basedir}/libs</url>
         </repository>
     </repositories>
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <url>https://maven.pkg.github.com/kalaposfos13/1stPerson2DRenderer</url>
+        </repository>
+    </distributionManagement>
 </project>
