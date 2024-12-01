@@ -93,7 +93,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>$nhf.EditorWindow</mainClass>
+                            <mainClass>nhf.EditorWindow</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
