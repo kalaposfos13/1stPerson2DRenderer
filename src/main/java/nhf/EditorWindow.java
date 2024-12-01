@@ -219,7 +219,7 @@ public class EditorWindow extends JFrame {
 
    public static void main(String[] args) throws Exception {
       EditorWindow window = new EditorWindow();
-      window.workArea.currentScene = SceneFileHandler.loadSceneFromXML(new File("/home/kalaposfos/Documents/treeScene.xml"));
+      window.workArea.currentScene = SceneFileHandler.loadSceneFromXML(new File("src/main/resources/nhf/treeScene.xml"));
       window.workArea.repaint();
    }
 }
