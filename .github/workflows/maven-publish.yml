@@ -38,4 +38,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: 1stPerson2DRenderer
-          path: target/1stPerson2DRenderer-1.0.0-jar-with-dependencies.jar
+          path: target/1P2DR-1.0.0-jar-with-dependencies.jar
