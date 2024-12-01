@@ -1,8 +1,10 @@
+package nhf;
 import com.jogamp.opengl.GL3;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.HashMap;
 import java.util.Map;
+
 
 public class Camera {
    private Vector2 position;

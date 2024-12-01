@@ -1,3 +1,4 @@
+package nhf;
 import com.jogamp.opengl.*;
 import com.jogamp.opengl.awt.GLCanvas;
 import javax.swing.*;
@@ -5,6 +6,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
+
 
 public class RendererPanel extends JPanel implements GLEventListener {
    private int shaderProgram;

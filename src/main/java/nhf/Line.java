@@ -1,6 +1,8 @@
+package nhf;
+
 import java.awt.*;
 import java.awt.geom.Point2D;
-
+ 
 
 public class Line {
    public Vector2 p1;

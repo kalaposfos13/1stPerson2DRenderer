@@ -1,8 +1,10 @@
+package nhf;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
+
 
 public class RendererWindow extends JFrame {
    public RendererWindow(Scene scene) {

@@ -1,4 +1,6 @@
+package nhf;
 import java.awt.event.*;
+
 
 public class RendererInputHandler implements MouseMotionListener, MouseListener {
    private float mouseX = 0.0f;

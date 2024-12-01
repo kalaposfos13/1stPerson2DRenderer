@@ -1,6 +1,8 @@
+package nhf;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+
 
 public class WorkAreaPanel extends JPanel {
    public Scene currentScene;

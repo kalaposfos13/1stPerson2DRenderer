@@ -1,9 +1,11 @@
+package nhf;
 import com.jogamp.opengl.GL3;
 import com.jogamp.opengl.GLException;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+
 
 public class ShaderUtil {
    public int initShaders(GL3 gl, String vertexShaderFile, String fragmentShaderFile) throws IOException {

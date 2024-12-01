@@ -1,4 +1,6 @@
+package nhf;
 import java.awt.*;
+
 
 public class Vector2 {
    public double x;

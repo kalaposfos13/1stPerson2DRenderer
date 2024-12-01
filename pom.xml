@@ -3,8 +3,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.example</groupId>
-    <artifactId>1stPerson2DRenderer</artifactId>
+    <groupId>nhf</groupId>
+    <artifactId>nhf</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
@@ -55,9 +55,11 @@
         </dependency>
     </dependencies>
     <build>
+        <sourceDirectory>src/main/java/</sourceDirectory>
+        <testSourceDirectory>src/test/java/</testSourceDirectory>
         <resources>
             <resource>
-                <directory>src/main/resources</directory>
+                <directory>src/main/resources/</directory>
                 <includes>
                     <include>**/*</include>
                 </includes>
@@ -91,7 +93,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>EditorWindow</mainClass>
+                            <mainClass>$nhf.EditorWindow</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
@@ -107,6 +109,25 @@
                     </execution>
                 </executions>
             </plugin>
+            <!-- JUnit 5 requires Surefire version 2.22.1 or higher -->
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.0.0</version>
+				<dependencies>
+					<dependency>
+						<groupId>me.fabriciorby</groupId>
+						<artifactId>maven-surefire-junit5-tree-reporter</artifactId>
+						<version>0.1.0</version>
+					</dependency>
+				</dependencies>
+				<configuration>
+					<reportFormat>plain</reportFormat>
+					<consoleOutputReporter>
+						<disable>true</disable>
+					</consoleOutputReporter>
+					<statelessTestsetInfoReporter implementation="org.apache.maven.plugin.surefire.extensions.junit5.JUnit5StatelessTestsetInfoTreeReporter"/>
+				</configuration>
+			</plugin>
         </plugins>
     </build>
 
