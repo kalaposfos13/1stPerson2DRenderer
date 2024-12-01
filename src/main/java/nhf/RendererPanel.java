@@ -17,6 +17,7 @@ public class RendererPanel extends JPanel implements GLEventListener {
    private GLCanvas glCanvas;
    private ShaderUtil shaderUtil;
    private Camera camera;
+   private RendererInputHandler inputHandler;
    Timer frameTimer;
    private Scene scene;
 
@@ -27,13 +28,14 @@ public class RendererPanel extends JPanel implements GLEventListener {
 
       shaderUtil = new ShaderUtil();
       camera = new Camera();
+      inputHandler = new RendererInputHandler(camera);
 
       // Set layout and add the canvas
       setLayout(new BorderLayout());
       add(glCanvas, BorderLayout.CENTER);
 
-      // Register input handlers
-      glCanvas.addKeyListener(camera.getInputHandler());
+      // Register input handler for the entire window
+      this.addKeyListener(inputHandler);
 
       // Start a frame timer for continuous redraws
       frameTimer = new Timer(16, e -> glCanvas.display());
@@ -50,7 +52,9 @@ public class RendererPanel extends JPanel implements GLEventListener {
          public void dispose(GLAutoDrawable drawable) {}
 
          @Override
-         public void display(GLAutoDrawable drawable) {}
+         public void display(GLAutoDrawable drawable) {
+            camera.updateCamera(inputHandler.getKeyStates());
+         }
 
          @Override
          public void reshape(GLAutoDrawable drawable, int x, int y, int width, int height) {}
@@ -133,10 +137,6 @@ public class RendererPanel extends JPanel implements GLEventListener {
       System.out.println("Buffers initialized successfully");
    }
 
-
-
-
-
    @Override
    public void init(GLAutoDrawable drawable) {
       GL3 gl = drawable.getGL().getGL3();
@@ -159,7 +159,7 @@ public class RendererPanel extends JPanel implements GLEventListener {
 
    @Override
    public void display(GLAutoDrawable drawable) {
-      camera.updateCamera();
+      camera.updateCamera(inputHandler.getKeyStates());
       //System.out.println("Rendering a frame...");
       GL3 gl = drawable.getGL().getGL3();
       gl.glClear(GL3.GL_COLOR_BUFFER_BIT | GL3.GL_DEPTH_BUFFER_BIT);

@@ -1,53 +1,45 @@
 package nhf;
-import java.awt.event.*;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.util.HashMap;
+import java.util.Map;
 
-public class RendererInputHandler implements MouseMotionListener, MouseListener {
-   private float mouseX = 0.0f;
-   private float mouseY = 0.0f;
-   private boolean mouseClicked = false;
+public class RendererInputHandler implements KeyListener {
+   private Map<Integer, Boolean> keyStates = new HashMap<>();
+   private Camera camera;
 
-   @Override
-   public void mouseMoved(MouseEvent e) {
-      mouseX = (float) e.getX();
-      mouseY = (float) e.getY();
+   public RendererInputHandler(Camera camera) {
+      this.camera = camera;
+      initializeKeyStates();
+   }
+
+   private void initializeKeyStates() {
+      int[] keys = {KeyEvent.VK_W, KeyEvent.VK_S, KeyEvent.VK_A, KeyEvent.VK_D,
+            KeyEvent.VK_Q, KeyEvent.VK_E, KeyEvent.VK_R, KeyEvent.VK_F,
+            KeyEvent.VK_SHIFT, KeyEvent.VK_CONTROL, KeyEvent.VK_SPACE};
+      for (int key : keys) {
+         keyStates.put(key, false);
+      }
    }
 
    @Override
-   public void mouseDragged(MouseEvent e) {
-      mouseX = (float) e.getX();
-      mouseY = (float) e.getY();
+   public void keyPressed(KeyEvent e) {
+      if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+         camera.setFlipState(!camera.getFlipState());
+      }
+      keyStates.put(e.getKeyCode(), true);
    }
 
    @Override
-   public void mousePressed(MouseEvent e) {
-      mouseClicked = true;
+   public void keyReleased(KeyEvent e) {
+      keyStates.put(e.getKeyCode(), false);
    }
 
    @Override
-   public void mouseReleased(MouseEvent e) {
-      mouseClicked = false;
-   }
+   public void keyTyped(KeyEvent e) {}
 
-   public float getNormalizedMouseX(int width) {
-      //return (mouseX / width) * 2 - 1;
-      return mouseX;
-   }
-
-   public float getNormalizedMouseY(int height) {
-      //return (1 - (mouseY / height)) * 2 - 1;
-      return height - mouseY;
-   }
-
-   public boolean isMouseClicked() {
-      return mouseClicked;
-   }
-
-   @Override public void mouseClicked(MouseEvent e) {}
-   @Override public void mouseEntered(MouseEvent e) {
-      mouseClicked = e.getButton() == MouseEvent.BUTTON1;
-   }
-   @Override public void mouseExited(MouseEvent e) {
-      mouseClicked = false;
+   public Map<Integer, Boolean> getKeyStates() {
+      return keyStates;
    }
 }
