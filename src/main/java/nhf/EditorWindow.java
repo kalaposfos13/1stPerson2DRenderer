@@ -10,7 +10,6 @@ import java.io.File;
 
 public class EditorWindow extends JFrame {
 
-   //private Scene currentScene;
    private final WorkAreaPanel workArea;
    private Color selectedColor = Color.BLACK;
 
@@ -121,6 +120,10 @@ public class EditorWindow extends JFrame {
                   workArea.paintColor = clickedColor;
                   colorButton.setBackground(selectedColor);
                   colorPickerPanel.setVisible(false);  // Close color picker panel
+                  if (workArea.getSelectedLine() != null) {
+                     workArea.getSelectedLine().color = selectedColor;
+                     workArea.repaint();
+                  }
                }
             }
          }
@@ -204,7 +207,7 @@ public class EditorWindow extends JFrame {
       int returnValue = fileChooser.showOpenDialog(this);
       if (returnValue == JFileChooser.APPROVE_OPTION) {
          File file = fileChooser.getSelectedFile();
-         try {
+         try {5
             workArea.currentScene = SceneFileHandler.loadSceneFromXML(file);
             workArea.repaint();  // Refresh work area after loading new scene
             //JOptionPane.showMessageDialog(this, "Scene loaded successfully!");
@@ -213,8 +216,6 @@ public class EditorWindow extends JFrame {
             JOptionPane.showMessageDialog(this, "Failed to load scene!", "Error", JOptionPane.ERROR_MESSAGE);
          }
       }
-   }
-   public void updateColor() {
    }
 
    public static void main(String[] args) throws Exception {
