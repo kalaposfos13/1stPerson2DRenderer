@@ -1,20 +1,13 @@
 package nhf;
 
 import com.jogamp.opengl.GL3;
-import com.jogamp.opengl.GLException;
-
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.*;
 
-import java.io.File;
-import java.nio.file.Files;
 import java.io.IOException;
-import java.nio.file.Paths;
 
 public class ShaderUtilTest {
 

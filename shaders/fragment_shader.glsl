@@ -10,6 +10,7 @@ uniform vec2 cameraPosition;
 uniform float cameraRotation;
 uniform float cameraFov;
 uniform int imageFlipped;
+uniform int lineRendering;
 
 in vec2 fragTexCoord;
 
@@ -84,9 +85,12 @@ void main() {
         vec2 intersection = vec2(0.0);
         if (intersectRayWithLineSegment(cameraPosition, pixelRayDirection, p1, p2, distFromRayOrigin, intersection)) {
             float customDist = customDistanceBetweenPoints(intersection, cameraPosition, rotate2(vec2(1.0, 0.0), cameraRotation + cameraFov * 0.5));
-            if ( 20 / customDist > abs(viewPos.x) && distFromRayOrigin < minDistance) {
-                minDistance = distFromRayOrigin;
-                closestColor = color;
+            if (distFromRayOrigin < minDistance) {
+                if ((20 / customDist > abs(viewPos.x) && lineRendering == 0) ||
+                        abs(viewPos.x) < 0.1 && lineRendering == 1) {
+                    minDistance = distFromRayOrigin;
+                    closestColor = color;
+                }
             }
         }
     }

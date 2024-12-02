@@ -17,7 +17,7 @@ public class RendererInputHandler implements KeyListener {
    private void initializeKeyStates() {
       int[] keys = {KeyEvent.VK_W, KeyEvent.VK_S, KeyEvent.VK_A, KeyEvent.VK_D,
             KeyEvent.VK_Q, KeyEvent.VK_E, KeyEvent.VK_R, KeyEvent.VK_F,
-            KeyEvent.VK_SHIFT, KeyEvent.VK_CONTROL, KeyEvent.VK_SPACE};
+            KeyEvent.VK_SHIFT, KeyEvent.VK_CONTROL};
       for (int key : keys) {
          keyStates.put(key, false);
       }
@@ -27,8 +27,12 @@ public class RendererInputHandler implements KeyListener {
    public void keyPressed(KeyEvent e) {
       if (e.getKeyCode() == KeyEvent.VK_SPACE) {
          camera.setFlipState(!camera.getFlipState());
+      } else if (e.getKeyCode() == KeyEvent.VK_I) {
+         camera.set1DRendering(!camera.get1DRendering());
+      } else {
+         keyStates.put(e.getKeyCode(), true);
       }
-      keyStates.put(e.getKeyCode(), true);
+      
    }
 
    @Override

@@ -43,6 +43,6 @@ public class RendererWindow extends JFrame {
    }
    public static void main(String[] args) {
       //new RendererWindow();
-      RendererWindow r = new RendererWindow(SceneFileHandler.loadSceneFromXML(new File("src/main/resources/nhf/treeScene.xml")));
+      new RendererWindow(SceneFileHandler.loadSceneFromXML(new File("src/main/resources/nhf/treeScene.xml")));
    }
 }

@@ -207,7 +207,7 @@ public class EditorWindow extends JFrame {
       int returnValue = fileChooser.showOpenDialog(this);
       if (returnValue == JFileChooser.APPROVE_OPTION) {
          File file = fileChooser.getSelectedFile();
-         try {5
+         try {
             workArea.currentScene = SceneFileHandler.loadSceneFromXML(file);
             workArea.repaint();  // Refresh work area after loading new scene
             //JOptionPane.showMessageDialog(this, "Scene loaded successfully!");

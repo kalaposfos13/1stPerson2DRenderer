@@ -35,7 +35,7 @@ public class RendererPanel extends JPanel implements GLEventListener {
       add(glCanvas, BorderLayout.CENTER);
 
       // Register input handler for the entire window
-      this.addKeyListener(inputHandler);
+      glCanvas.addKeyListener(inputHandler);
 
       // Start a frame timer for continuous redraws
       frameTimer = new Timer(16, e -> glCanvas.display());
@@ -53,7 +53,7 @@ public class RendererPanel extends JPanel implements GLEventListener {
 
          @Override
          public void display(GLAutoDrawable drawable) {
-            camera.updateCamera(inputHandler.getKeyStates());
+            //camera.updateCamera(inputHandler.getKeyStates());
          }
 
          @Override
@@ -174,9 +174,10 @@ public class RendererPanel extends JPanel implements GLEventListener {
       int cameraRotationLocation = gl.glGetUniformLocation(shaderProgram, "cameraRotation");
       int cameraFovLocation = gl.glGetUniformLocation(shaderProgram, "cameraFov");
       int flippedLocation = gl.glGetUniformLocation(shaderProgram, "imageFlipped");
+      int lineRenderLocation = gl.glGetUniformLocation(shaderProgram, "lineRendering");
 
       if (cameraPositionLocation == -1 || cameraRotationLocation == -1 ||
-            cameraFovLocation == -1 || flippedLocation == -1) {
+            cameraFovLocation == -1 || flippedLocation == -1 || lineRenderLocation == -1) {
          System.err.println("Uniform not found in shader");
       }
 
@@ -184,6 +185,7 @@ public class RendererPanel extends JPanel implements GLEventListener {
       gl.glUniform1f(cameraRotationLocation, (float) camera.getRotation());
       gl.glUniform1f(cameraFovLocation, (float) camera.getFov());
       gl.glUniform1i(flippedLocation, camera.getFlipState() ? 1 : 0);
+      gl.glUniform1i(lineRenderLocation, camera.get1DRendering() ? 1 : 0);
 
       // Draw
       gl.glDrawElements(GL3.GL_TRIANGLES, 6, GL3.GL_UNSIGNED_INT, 0);

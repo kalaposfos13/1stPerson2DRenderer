@@ -8,12 +8,14 @@ public class Camera {
    private double rotation;
    private double fov;
    private boolean flipped;
+   private boolean lineRender;
 
    public Camera(Vector2 position, double rotation, double fov) {
       this.position = position;
       this.rotation = rotation;
       this.fov = fov;
       this.flipped = false;
+      this.lineRender = false;
    }
 
    public Camera() {
@@ -50,6 +52,13 @@ public class Camera {
 
    public void setFlipState(boolean f) {
       flipped = f;
+   }
+   public boolean get1DRendering() {
+      return lineRender;
+   }
+
+   public void set1DRendering(boolean f) {
+      lineRender = f;
    }
 
    public void updateCamera(Map<Integer, Boolean> keyStates) {
