@@ -188,7 +188,7 @@ public class EditorWindow extends JFrame {
          return;
       }
 
-      JFileChooser fileChooser = new JFileChooser();
+      JFileChooser fileChooser = new JFileChooser("./");
       int returnValue = fileChooser.showSaveDialog(this);
       if (returnValue == JFileChooser.APPROVE_OPTION) {
          File file = fileChooser.getSelectedFile();
@@ -203,7 +203,7 @@ public class EditorWindow extends JFrame {
    }
 
    private void loadScene() {
-      JFileChooser fileChooser = new JFileChooser();
+      JFileChooser fileChooser = new JFileChooser("./");
       int returnValue = fileChooser.showOpenDialog(this);
       if (returnValue == JFileChooser.APPROVE_OPTION) {
          File file = fileChooser.getSelectedFile();
